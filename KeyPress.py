@@ -35,14 +35,14 @@ def on_press(key):
 
                 if trigger_count >= max_triggers:
                     listener.stop() # Stop the listener once the target is met
-                    messagebox.showinfo("Application Shutdown", f"Application has shut down after {max_triggers} triggers.")
+                    messagebox.showinfo("Noises Achieved!", f"Met {max_triggers} triggers. Exiting.")
     except AttributeError:
         pass # Ignore special keys
 
 # Function to select the audio file
 def select_audio_file():
     global audio_file_path
-    audio_file_path = filedialog.askopenfilename(title="Select Audio File", filetypes=[("Audio Files", "*.mp3 *.wav")])
+    audio_file_path = filedialog.askopenfilename(title="Choose your weapon (Audio File)", filetypes=[("Audio Files", "*.mp3 *.wav")])
     if audio_file_path:
         audio_file_label.config(text=os.path.basename(audio_file_path))
 
@@ -64,7 +64,7 @@ def start_application():
         listener = keyboard.Listener(on_press=on_press)
         listener.start()
 
-        messagebox.showinfo("Application Running", f"Application started! Listening for {target_key.upper()} key press.")
+        messagebox.showinfo("May the chaos commence!", f"Application started! Listening for {target_key.upper()} key press.")
 
     except ValueError:
         messagebox.showwarning("Input Error", "Please enter valid numbers for key presses and trigger limit.")
@@ -75,13 +75,13 @@ def exit_application():
 
 # GUI setup
 root = tk.Tk()
-root.title("Key Trigger Application")
+root.title("Silly Noises Tool")
 root.geometry("400x300")
 
 # Audio file selection
-audio_file_label = tk.Label(root, text="No file selected")
+audio_file_label = tk.Label(root, text="No Weapon (Audio File) selected")
 audio_file_label.pack(pady=10)
-audio_button = tk.Button(root, text="Select Audio File", command=select_audio_file)
+audio_button = tk.Button(root, text="Select Weapon (Audio File)", command=select_audio_file)
 audio_button.pack()
 
 # Key press settings
@@ -101,10 +101,10 @@ trigger_entry = tk.Entry(root)
 trigger_entry.pack()
 
 # Start and exit buttons
-start_button = tk.Button(root, text="Start Application", command=start_application)
+start_button = tk.Button(root, text="Start the Chaos", command=start_application)
 start_button.pack(pady=10)
 
-exit_button = tk.Button(root, text="Exit", command=exit_application)
+exit_button = tk.Button(root, text="End the Chaos", command=exit_application)
 exit_button.pack(pady=10)
 
 root.mainloop()
